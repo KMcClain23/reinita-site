@@ -52,9 +52,8 @@ export default function AboutPage() {
               >
                 {/* TODO: Reinita to fill — why narration? what brought her here? */}
                 <span className="italic text-driftwood">
-                  [Paragraph 2 — Reinita's story: how she got into narration,
-                  what she trained in, what kinds of books she gravitates
-                  toward as a listener.]
+                  Here is where you can talk about what got you into narration
+                  and what types of books you gravitate toward as a listener.
                 </span>
               </p>
 
@@ -84,25 +83,6 @@ export default function AboutPage() {
 
       <WaveDivider />
 
-      {/* Quick facts grid */}
-      <section className="py-section">
-        <div className="mx-auto max-w-[1100px] px-6 lg:px-12">
-          <h2 data-reveal className="eyebrow">Quick facts</h2>
-          <dl className="mt-10 grid gap-y-10 gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
-            <Fact label="Genres" delay={0}>
-              Romance, fantasy, paranormal, children's
-            </Fact>
-            <Fact label="Vocal range" delay={80}>Child to elderly</Fact>
-            <Fact label="Accents" delay={160}>Southern, French, British</Fact>
-            <Fact label="Studio" delay={240}>
-              Shure MV7+ with pop filter, Audacity, treated home booth
-            </Fact>
-            <Fact label="Workflow" delay={320}>Punch and roll, self-edited</Fact>
-            <Fact label="Languages" delay={400}>English (fluent)</Fact>
-          </dl>
-        </div>
-      </section>
-
       <section className="py-section">
         <div className="mx-auto max-w-[820px] px-6 lg:px-12 text-center">
           <h2
@@ -122,26 +102,5 @@ export default function AboutPage() {
         </div>
       </section>
     </>
-  );
-}
-
-function Fact({
-  label,
-  children,
-  delay = 0,
-}: {
-  label: string;
-  children: React.ReactNode;
-  delay?: number;
-}) {
-  return (
-    <div
-      data-reveal
-      style={{ "--enter-delay": `${delay}ms` } as React.CSSProperties}
-      className="border-t border-mist pt-5"
-    >
-      <dt className="eyebrow">{label}</dt>
-      <dd className="mt-2 text-ink-soft">{children}</dd>
-    </div>
   );
 }
