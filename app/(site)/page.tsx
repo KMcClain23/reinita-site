@@ -231,9 +231,7 @@ export default async function HomePage() {
               style={{ "--enter-delay": "200ms" } as React.CSSProperties}
               className="border-t border-mist pt-5"
             >
-              <dt className="eyebrow">Range &amp; accents</dt>
-              <dd className="mt-2 text-ink-soft">
-                Child to elderly vocal range.
+              <dt className="eyebrow">Accents</dt>
                 <div className="mt-3 flex flex-wrap gap-1.5">
                   <span className="inline-flex items-center px-3 py-1 rounded-full border border-mist bg-shell text-xs text-driftwood tracking-wide">
                     Southern
@@ -245,7 +243,6 @@ export default async function HomePage() {
                     British
                   </span>
                 </div>
-              </dd>
             </div>
           </dl>
         </div>
