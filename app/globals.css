@@ -1,0 +1,276 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   Design tokens — Reinita Larue narration
+   Palette: ocean (abyss → tide → kelp → mist → shore)
+   Type: Fraunces (display) + Manrope (body)
+   ───────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Color: ocean palette */
+  --color-abyss: #0a1f2e;        /* deepest ocean — primary ink */
+  --color-tide: #1a4d5c;         /* mid ocean teal */
+  --color-kelp: #3d7a6b;         /* sea green — CTA accent */
+  --color-mist: #d4e4dc;         /* shallow seafoam — tint */
+  --color-shore: #f4efe6;        /* warm sand — page background */
+  --color-shell: #faf6ed;        /* lighter than shore — surfaces */
+  --color-driftwood: #8a8273;    /* warm gray — muted text */
+  --color-ink-soft: #2a3a47;     /* softer than abyss for body */
+
+  /* Type */
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  /* Type scale — fluid where it matters */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+  --text-4xl: clamp(2.5rem, 4vw + 1rem, 3.5rem);
+  --text-5xl: clamp(3.5rem, 7vw + 1rem, 6rem);
+  --text-hero: clamp(4rem, 10vw + 1rem, 9rem);
+
+  /* Spacing scale (mostly default, just expand for editorial gaps) */
+  --spacing-section: clamp(3rem, 6vw, 5.5rem);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Base
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  background: var(--color-shore);
+  color: var(--color-abyss);
+  font-family: var(--font-body);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--color-shore);
+  color: var(--color-ink-soft);
+  font-size: 1.125rem;
+  line-height: 1.72;
+  letter-spacing: -0.003em;
+}
+
+/* Selection */
+::selection {
+  background: var(--color-tide);
+  color: var(--color-shell);
+}
+
+/* Display type — Fraunces with the SOFT axis for warmth */
+.font-display {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 100, "WONK" 0, "opsz" 144;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  font-weight: 400;
+}
+
+.font-display-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  letter-spacing: -0.015em;
+  line-height: 1.02;
+  font-weight: 400;
+}
+
+/* Eyebrow label — used for section markers */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-tide);
+}
+
+/* Lede paragraph */
+.lede {
+  font-size: 1.25rem;
+  line-height: 1.55;
+  color: var(--color-ink-soft);
+  max-width: 38ch;
+}
+
+/* Link underline — animated on hover */
+.link-soft {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  transition: background-size 250ms ease, color 200ms ease;
+  padding-bottom: 1px;
+}
+
+.link-soft:hover {
+  color: var(--color-kelp);
+  background-size: 100% 2px;
+}
+
+/* Dark section — used for the Listen section */
+.section-dark {
+  background: var(--color-abyss);
+  color: var(--color-shore);
+}
+
+.section-dark .eyebrow {
+  color: var(--color-mist);
+}
+
+.section-dark .link-soft:hover {
+  color: var(--color-mist);
+}
+
+/* Focus styles — visible, soft */
+:focus-visible {
+  outline: 2px solid var(--color-kelp);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Hide scrollbar on body in safari without breaking scroll */
+html { scrollbar-gutter: stable; scroll-behavior: smooth; }
+
+/* ─────────────────────────────────────────────────────────────
+   Motion
+   ───────────────────────────────────────────────────────────── */
+
+/* Soft easing curve used throughout — feels like the page is breathing */
+@keyframes enter-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes enter-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes draw-stroke {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Page-load entrance — used on hero elements above the fold */
+.enter {
+  opacity: 0;
+  animation: enter-up 900ms cubic-bezier(0.16, 1, 0.3, 1) var(--enter-delay, 100ms) forwards;
+}
+
+.enter-1 { --enter-delay: 80ms;  }
+.enter-2 { --enter-delay: 180ms; }
+.enter-3 { --enter-delay: 280ms; }
+.enter-4 { --enter-delay: 380ms; }
+.enter-5 { --enter-delay: 480ms; }
+.enter-6 { --enter-delay: 580ms; }
+
+/* Scroll reveal — applied by ScrollReveal component */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+[data-reveal].is-revealed {
+  animation: enter-up 800ms cubic-bezier(0.16, 1, 0.3, 1) var(--enter-delay, 0ms) forwards;
+}
+
+[data-reveal="fade"] { transform: none; }
+[data-reveal="fade"].is-revealed {
+  animation: enter-fade 800ms cubic-bezier(0.16, 1, 0.3, 1) var(--enter-delay, 0ms) forwards;
+}
+
+/* SVG line that draws itself when the parent reveals */
+.reveal-stroke {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+}
+
+[data-reveal].is-revealed .reveal-stroke {
+  animation: draw-stroke 1800ms cubic-bezier(0.16, 1, 0.3, 1) var(--enter-delay, 100ms) forwards;
+}
+
+/* Wave flow — horizontal translation driven by --wave-shift on scroll.
+   Set by the ScrollReveal component. Works in tandem with draw-stroke
+   above: the path draws itself in once, then flows with scroll. */
+.wave-flow {
+  transform: translateX(var(--wave-shift, 0px));
+  will-change: transform;
+}
+
+/* Dropdown open animation — soft drop with a hint of scale */
+@keyframes dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scaleY(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+  }
+}
+
+.dropdown-menu {
+  animation: dropdown-in 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top;
+  box-shadow: 0 24px 48px -24px rgba(10, 31, 46, 0.22),
+              0 4px 12px -6px rgba(10, 31, 46, 0.08);
+}
+
+/* Hover lift for cards */
+.lift-card {
+  transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 350ms cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 350ms ease;
+}
+.lift-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px -22px rgba(10, 31, 46, 0.22);
+}
+
+/* Hover lift for buttons */
+.lift-btn {
+  transition: background-color 250ms ease,
+              transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 300ms ease;
+}
+.lift-btn:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 14px 28px -14px rgba(10, 31, 46, 0.35);
+}
+.lift-btn:active { transform: translateY(0); }
+
+/* Soft pulse for the play button when audio is playing */
+@keyframes play-pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.08); }
+}
+.is-playing { animation: play-pulse 2.2s ease-in-out infinite; }
+
+/* Reduced motion — kill everything cleanly */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  [data-reveal], .enter {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .reveal-stroke { stroke-dashoffset: 0 !important; }
+}

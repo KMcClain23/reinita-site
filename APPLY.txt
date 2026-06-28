@@ -1,0 +1,16 @@
+NEWSLETTER EYEBROW FIX
+
+Drop into D:\Developer\reinita-site\components\ and overwrite. 1 file.
+
+CHANGED
+
+  components/newsletter-form.tsx
+
+  Eyebrow label changed from
+      FROM THE BOOTH, OCCASIONALLY
+  to
+      BE THE FIRST TO HEAR
+
+  Direct, clear, and has a quiet audio resonance — "hear" works
+  for both "be the first to know" and the literal point that
+  she's an audiobook narrator. No unpacking required.
