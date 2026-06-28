@@ -15,7 +15,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-[1100px] px-6 lg:px-12">
           <p className="enter enter-1 eyebrow">About</p>
           <h1 className="enter enter-2 font-display-italic mt-6 text-[clamp(3rem,6vw+1rem,5rem)] leading-[1] text-abyss max-w-[14ch]">
-            The voice behind the headphones.
+            The story behind the storyteller.
           </h1>
         </div>
       </section>
