@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Manrope } from "next/font/google";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { AudioSync } from "@/components/audio-sync";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -48,6 +49,7 @@ export default function RootLayout({
     <html lang="en" className={`${fraunces.variable} ${manrope.variable}`}>
       <body>
         <ScrollReveal />
+        <AudioSync />
         {children}
       </body>
     </html>

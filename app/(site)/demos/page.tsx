@@ -86,7 +86,7 @@ export default async function DemosPage() {
                 >
                   {genre}
                 </h2>
-                <div className="grid gap-6 md:grid-cols-2">
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                   {list.map((demo, i) => (
                     <div
                       key={demo.id}

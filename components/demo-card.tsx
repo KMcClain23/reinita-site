@@ -38,13 +38,22 @@ export function DemoCard({ demo, variant = "light" }: DemoCardProps) {
       setPlaying(false);
       setProgress(0);
     };
+    // Track playing state via the actual audio events, not just the toggle.
+    // This lets an external pause (e.g., a sibling demo starting) correctly
+    // update this card's UI.
+    const onPlay = () => setPlaying(true);
+    const onPause = () => setPlaying(false);
     a.addEventListener("timeupdate", onTime);
     a.addEventListener("loadedmetadata", onMeta);
     a.addEventListener("ended", onEnd);
+    a.addEventListener("play", onPlay);
+    a.addEventListener("pause", onPause);
     return () => {
       a.removeEventListener("timeupdate", onTime);
       a.removeEventListener("loadedmetadata", onMeta);
       a.removeEventListener("ended", onEnd);
+      a.removeEventListener("play", onPlay);
+      a.removeEventListener("pause", onPause);
     };
   }, []);
 
@@ -53,11 +62,10 @@ export function DemoCard({ demo, variant = "light" }: DemoCardProps) {
     if (!a) return;
     if (playing) {
       a.pause();
-      setPlaying(false);
     } else {
       a.play();
-      setPlaying(true);
     }
+    // No need to setPlaying — the play/pause event listeners handle it
   };
 
   const seek = (e: React.MouseEvent<HTMLDivElement>) => {

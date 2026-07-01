@@ -232,7 +232,8 @@ export default async function HomePage() {
               className="border-t border-mist pt-5"
             >
               <dt className="eyebrow">Accents</dt>
-                <div className="mt-3 flex flex-wrap gap-1.5">
+              <dd className="mt-3">
+                <div className="flex flex-wrap gap-1.5">
                   <span className="inline-flex items-center px-3 py-1 rounded-full border border-mist bg-shell text-xs text-driftwood tracking-wide">
                     Southern
                   </span>
@@ -243,6 +244,7 @@ export default async function HomePage() {
                     British
                   </span>
                 </div>
+              </dd>
             </div>
           </dl>
         </div>
