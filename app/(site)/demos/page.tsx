@@ -34,12 +34,6 @@ async function getDemos(): Promise<Demo[]> {
 export default async function DemosPage() {
   const demos = await getDemos();
 
-  // Group by genre
-  const byGenre = demos.reduce<Record<string, Demo[]>>((acc, d) => {
-    (acc[d.genre] ??= []).push(d);
-    return acc;
-  }, {});
-
   return (
     <>
       <section className="pt-40 pb-16">
@@ -77,28 +71,18 @@ export default async function DemosPage() {
         </section>
       ) : (
         <section className="pb-section">
-          <div className="mx-auto max-w-[1100px] px-6 lg:px-12 space-y-20">
-            {Object.entries(byGenre).map(([genre, list]) => (
-              <div key={genre}>
-                <h2
+          <div className="mx-auto max-w-[1100px] px-6 lg:px-12">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {demos.map((demo, i) => (
+                <div
+                  key={demo.id}
                   data-reveal
-                  className="font-display-italic text-3xl lg:text-4xl text-abyss mb-8"
+                  style={{ "--enter-delay": `${(i % 3) * 80}ms` } as React.CSSProperties}
                 >
-                  {genre}
-                </h2>
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                  {list.map((demo, i) => (
-                    <div
-                      key={demo.id}
-                      data-reveal
-                      style={{ "--enter-delay": `${i * 80}ms` } as React.CSSProperties}
-                    >
-                      <DemoCard demo={demo} />
-                    </div>
-                  ))}
+                  <DemoCard demo={demo} />
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
       )}
