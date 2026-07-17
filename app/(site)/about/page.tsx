@@ -52,8 +52,7 @@ export default function AboutPage() {
               >
                 {/* TODO: Reinita to fill — why narration? what brought her here? */}
                 <span className="italic text-driftwood">
-                  Here is where you can talk about what got you into narration
-                  and what types of books you gravitate toward as a listener.
+My journey into narration started with a simple hope: that my son would always be able to hear stories in my voice. My mom encouraged me to pursue audiobook narration for years, and after she passed away, I finally took the leap. What began as a deeply personal goal quickly became a career I truly love.
                 </span>
               </p>
 
