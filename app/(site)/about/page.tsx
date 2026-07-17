@@ -51,7 +51,7 @@ export default function AboutPage() {
                 style={{ "--enter-delay": "100ms" } as React.CSSProperties}
               >
                 {/* TODO: Reinita to fill — why narration? what brought her here? */}
-                <span className="italic text-driftwood">
+                <span className="italic">
 My journey into narration started with a simple hope: that my son would always be able to hear stories in my voice. My mom encouraged me to pursue audiobook narration for years, and after she passed away, I finally took the leap. What began as a deeply personal goal quickly became a career I truly love.
                 </span>
               </p>
